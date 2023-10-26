@@ -6,9 +6,6 @@
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
 
-    <!-- Preloader -->
-    @include('admin.modules.preloader')
-
     <!-- Navbar -->
     @include('admin.modules.navbar')
     <!-- /.navbar -->
@@ -23,10 +20,6 @@
     <!-- Footer -->
     @include('admin.layouts.footer.footer')
 
-    <!-- Control Sidebar -->
-    <aside class="control-sidebar control-sidebar-dark">
-        <!-- Control sidebar content goes here -->
-    </aside>
     <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->

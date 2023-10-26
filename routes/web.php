@@ -1,8 +1,9 @@
 <?php
 
+use App\Http\Controllers\Admin\Category\StoreController;
 use App\Http\Controllers\Blog\IndexController;
-use App\Http\Controllers\Admin\Main\IndexController;
-use App\Http\Controllers\Category\IndexController;
+use App\Http\Controllers\Admin\Main\IndexController as AdminIndexController;
+use App\Http\Controllers\Admin\Category\IndexController as AdminCategoryController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -17,21 +18,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::group(['namespace' => 'App\Http\Controllers\Blog'], function () {
-    Route::get('/', 'IndexController');
+Route::namespace('App\Http\Controllers\Blog')->group(function () {
+    Route::get('/', IndexController::class);
 });
 
-Route::group(['namespace' => 'App\Http\Controllers\Admin', 'prefix' => 'admin'],function (){
-        Route::group(['namespace'=>'Main'],function () {
-            Route::get('/', 'IndexController');
-        });
-
-        Route::group(['namespace'=>'Category'],function () {
-            Route::get('/', 'IndexController');
-        });
+Route::namespace('App\Http\Controllers\Admin')->prefix('admin')->group(function () {
+    Route::namespace('Main')->group(function () {
+        Route::get('/',AdminIndexController::class)->name('admin.index');
+    });
+    Route::namespace('Category')->prefix('category')->group(function () {
+        Route::get('/',AdminCategoryController::class)->name('admin.category');
+        Route::post('/', StoreController::class)->name('admin.store');
+    });
 });
-
-
 
 Auth::routes();
 
