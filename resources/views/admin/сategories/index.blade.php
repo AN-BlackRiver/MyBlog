@@ -17,30 +17,27 @@
                 <thead class="thead-light">
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">First</th>
-                    <th scope="col">Last</th>
-                    <th scope="col">Handle</th>
+                    <th scope="col">Название</th>
+                    <th scope="col">Дата создания</th>
+                    <th scope="col">Дата обновления</th>
+                    <th> </th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>@twitter</td>
-                </tr>
+                    @foreach ( $categories as $category )
+                    <tr>
+                        <th scope="row">{{$category->id}}</th>
+                        <td>{{$category->title}}</td>
+                        <td>{{$category->created_at}}</td>
+                        <td>{{$category->updated_at}}</td>
+                        <td>
+                            <div>
+                                <a class="btn btn-info btn-sm"><i class="fas fa-edit"></i></a>
+                                <a class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
@@ -60,7 +57,7 @@
                             @error('title')is-invalid @enderror"
                             id="title"
                             placeholder="Название категории"
-                            required>
+                            >
                         @error('title')
                         <div id="title" class="invalid-feedback">
                             {{$message}}
@@ -75,5 +72,6 @@
                 </form>
             </fieldset>
         </div>
+
     </div>
 @endsection

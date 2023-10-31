@@ -13,7 +13,6 @@ class StoreController extends Controller
     public function __invoke(StoreRequest $request)
     {
         $data = $request->validated();
-        dd($data);
         Category::create($data);
         return redirect()->route('admin.category');
     }
