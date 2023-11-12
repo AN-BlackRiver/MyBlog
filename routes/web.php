@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\Category\ShowController;
 use App\Http\Controllers\Admin\Category\StoreController;
 use App\Http\Controllers\Blog\IndexController;
 use App\Http\Controllers\Admin\Main\IndexController as AdminIndexController;
@@ -27,8 +28,9 @@ Route::namespace('App\Http\Controllers\Admin')->prefix('admin')->group(function 
         Route::get('/',AdminIndexController::class)->name('admin.index');
     });
     Route::namespace('Category')->prefix('category')->group(function () {
-        Route::get('/',AdminCategoryController::class)->name('admin.category');
+        Route::get('/',AdminCategoryController::class)->name('admin.categories');
         Route::post('/', StoreController::class)->name('admin.store');
+        Route::get('/{category}', ShowController::class)->name('admin.category.show');
     });
 });
 

@@ -13,7 +13,7 @@ class StoreController extends Controller
     public function __invoke(StoreRequest $request)
     {
         $data = $request->validated();
-        Category::firstOrCreate($data);
+        Category::firstOrCreate(['title' => mb_strtolower($data['title'])]);
         return redirect()->route('admin.category');
     }
 }

@@ -11,3 +11,4 @@
 <!-- Daterange picker -->
 <link rel="stylesheet" href="{{asset('plugins/daterangepicker/daterangepicker.css')}}">
 
+

@@ -20,7 +20,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="{{route('admin.category')}}" class="nav-link">
+                    <a href="{{route('admin.categories')}}" class="nav-link">
                         <i class="nav-icon fas fa-list-alt"></i>
                         <p>Категории</p>
                     </a>

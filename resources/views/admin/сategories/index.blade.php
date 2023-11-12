@@ -32,7 +32,9 @@
                         <td>{{$category->updated_at}}</td>
                         <td>
                             <div>
-                                <a class="btn btn-info btn-sm"><i class="fas fa-edit"></i></a>
+                                <a class="btn btn-info btn-sm" href="{{route('admin.category.show',$category->id)}}">
+                                    <i class="fas fa-edit"></i>
+                                </a>
                                 <a class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></a>
                             </div>
                         </td>
@@ -72,6 +74,7 @@
                     </div>
                 </form>
             </fieldset>
+
         </div>
 
     </div>
