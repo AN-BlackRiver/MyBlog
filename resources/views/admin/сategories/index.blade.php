@@ -40,6 +40,7 @@
                     @endforeach
                 </tbody>
             </table>
+            <div class="col">{{$categories->links()}}</div>
         </div>
 
         <div class="container-fluid mt-4">

@@ -9,6 +9,6 @@ class IndexController extends Controller
 {
     public function __invoke()
     {
-        return view('admin.сategories.index', ['categories' => Category::paginate(10)]);
+        return view('admin.сategories.index', ['categories' => Category::paginate(5)]);
     }
 }
