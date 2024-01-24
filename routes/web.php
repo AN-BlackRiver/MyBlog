@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\Admin\Category\DeleteController;
 use App\Http\Controllers\Admin\Category\ShowController;
 use App\Http\Controllers\Admin\Category\StoreController;
+use App\Http\Controllers\Admin\Category\UpdateController;
 use App\Http\Controllers\Blog\IndexController;
 use App\Http\Controllers\Admin\Main\IndexController as AdminIndexController;
 use App\Http\Controllers\Admin\Category\IndexController as AdminCategoryController;
@@ -31,6 +33,8 @@ Route::namespace('App\Http\Controllers\Admin')->prefix('admin')->group(function 
         Route::get('/',AdminCategoryController::class)->name('admin.categories');
         Route::post('/', StoreController::class)->name('admin.store');
         Route::get('/{category}', ShowController::class)->name('admin.category.show');
+        Route::patch('/{category}', UpdateController::class)->name('admin.category.update');
+        Route::delete('/{category}', DeleteController::class)->name('admin.category.delete');
     });
 });
 
