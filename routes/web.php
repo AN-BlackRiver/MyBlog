@@ -1,12 +1,7 @@
 <?php
 
-use App\Http\Controllers\Admin\Category\DeleteController;
-use App\Http\Controllers\Admin\Category\ShowController;
-use App\Http\Controllers\Admin\Category\StoreController;
-use App\Http\Controllers\Admin\Category\UpdateController;
-use App\Http\Controllers\Blog\IndexController;
-use App\Http\Controllers\Admin\Main\IndexController as AdminIndexController;
-use App\Http\Controllers\Admin\Category\IndexController as AdminCategoryController;
+use App\Http\Controllers\Admin\Category\CategoryController;
+use App\Http\Controllers\Admin\Tag\TagController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -22,20 +17,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::namespace('App\Http\Controllers\Blog')->group(function () {
-    Route::get('/', IndexController::class);
+    Route::get('/', 'IndexController');
 });
 
 Route::namespace('App\Http\Controllers\Admin')->prefix('admin')->group(function () {
     Route::namespace('Main')->group(function () {
-        Route::get('/',AdminIndexController::class)->name('admin.index');
+        Route::get('/', 'IndexController')->name('admin.index');
     });
-    Route::namespace('Category')->prefix('category')->group(function () {
-        Route::get('/',AdminCategoryController::class)->name('admin.categories');
-        Route::post('/', StoreController::class)->name('admin.store');
-        Route::get('/{category}', ShowController::class)->name('admin.category.show');
-        Route::patch('/{category}', UpdateController::class)->name('admin.category.update');
-        Route::delete('/{category}', DeleteController::class)->name('admin.category.delete');
-    });
+
+    Route::namespace('Category')->prefix('category')->resource('categories', CategoryController::class);
+
+    Route::namespace('Tag')->prefix('tags')->resource('tags', TagController::class);
 });
 
 Auth::routes();

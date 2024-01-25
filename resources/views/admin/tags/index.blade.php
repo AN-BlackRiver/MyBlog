@@ -6,7 +6,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Категории</h1>
+                        <h1 class="m-0">Теги</h1>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
             </div><!-- /.container-fluid -->
@@ -15,9 +15,9 @@
         <div class="container-fluid ">
             <fieldset class="border p-2">
                 <legend class="w-auto r-3-2">
-                    Добавление категории
+                    Добавление тега
                 </legend>
-                <form method="post" action="{{ route('categories.store') }}">
+                <form method="post" action="{{ route('tags.store') }}">
                     @csrf
                     <div class="row">
                         <div class="col-6">
@@ -26,7 +26,7 @@
                                    class="form-control
                             @error('title')is-invalid @enderror"
                                    id="title"
-                                   placeholder="Название категории"
+                                   placeholder="Название тега"
                             >
                             @error('title')
                             <div id="title" class="invalid-feedback">
@@ -55,18 +55,18 @@
                 </tr>
                 </thead>
                 <tbody>
-                    @foreach ( $categories as $category )
+                    @foreach ($tags as $tag )
                     <tr>
-                        <th scope="row">{{$category->id}}</th>
-                        <td>{{$category->title}}</td>
-                        <td>{{$category->created_at}}</td>
+                        <th scope="row">{{$tag->id}}</th>
+                        <td>{{$tag->title}}</td>
+                        <td>{{$tag->created_at}}</td>
                         <td>
                             <div class="row">
-                                <a class="btn btn-info btn-sm mr-1" href="{{route('categories.show',$category->id)}}">
+                                <a class="btn btn-info btn-sm mr-1" href="{{route('tags.show',$tag->id)}}">
                                     <i class="fas fa-edit"></i>
                                 </a>
                                 <div>
-                                    <form onSubmit="return confirm('Подтвердите удаление категории!')" method="post" action="{{route('categories.destroy',$category->id)}}">
+                                    <form onSubmit="return confirm('Подтвердите удаление категории!')" method="post" action="{{route('tags.destroy',$tag->id)}}">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></button>
@@ -78,7 +78,7 @@
                     @endforeach
                 </tbody>
             </table>
-            <div class="col">{{$categories->links()}}</div>
+            <div class="col">{{$tags->links()}}</div>
         </div>
 
 

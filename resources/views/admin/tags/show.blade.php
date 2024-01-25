@@ -6,7 +6,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Редактирование категории</h1>
+                        <h1 class="m-0">Редактирование тега</h1>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
             </div><!-- /.container-fluid -->
@@ -15,7 +15,7 @@
 
         <div class="container-fluid mt-2">
             <fieldset class="border p-2">
-                <form method="POST" action="{{route('categories.update',$category->id)}}">
+                <form method="POST" action="{{route('tags.update',$tag->id)}}">
                     @csrf
                     @method('PATCH')
                     <div class="row">
@@ -25,7 +25,7 @@
                             class="form-control
                             @error('title')is-invalid @enderror"
                             id="title"
-                            value="{{old('title') ? old('title') : $category->title}}"
+                            value="{{old('title') ? old('title') : $tag->title}}"
                             placeholder="Название категории"
                             >
                         @error('title')
