@@ -25,10 +25,12 @@ Route::namespace('App\Http\Controllers\Admin')->prefix('admin')->group(function 
         Route::get('/', 'IndexController')->name('admin.index');
     });
 
-    Route::namespace('Category')->prefix('category')->resource('categories', CategoryController::class);
+    Route::resource('categories', CategoryController::class);
 
-    Route::namespace('Tag')->prefix('tags')->resource('tags', TagController::class);
+    Route::resource('tags', TagController::class);
 });
+
+
 
 Auth::routes();
 
