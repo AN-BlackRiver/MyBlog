@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\Category\CategoryController;
+use App\Http\Controllers\Admin\Post\PostController;
 use App\Http\Controllers\Admin\Tag\TagController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -28,6 +29,8 @@ Route::namespace('App\Http\Controllers\Admin')->prefix('admin')->group(function 
     Route::resource('categories', CategoryController::class);
 
     Route::resource('tags', TagController::class);
+
+    Route::resource('posts', PostController::class);
 });
 
 
