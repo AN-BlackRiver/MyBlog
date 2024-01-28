@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Casts\AsStringable;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Post extends Model
 {
@@ -17,8 +18,13 @@ class Post extends Model
         'content',
         'preview_image',
         'main_image',
+        'category_id',
     ];
 
+    public function tags(): BelongsToMany
+    {
+        return $this->belongsToMany(Tag::class, 'post_tags','post_id','tag_id');
+    }
     protected $casts = [
         'content' => 'string',
     ];

@@ -42,7 +42,32 @@
                         </div>
 
                         <div class="col-6">
-                            <label for="exampleInputFile">Добавить превью</label>
+                            <div class="form-group">
+                                <label>Категория</label>
+                                <select name="category_id" class="form-control">
+                                    <option selected>Выберите категорию</option>
+                                    @foreach($categories as $category)
+                                        <option value="{{$category->id}}" {{$category->id == old('category_id') ? 'selected': ''}}>
+                                            {{$category->title}}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label>Выберите тэги</label>
+                                <select name="tag_ids[]" class="select2" multiple="multiple" data-placeholder="Выберите тэг" style="width: 100%;">
+                                    @foreach($tags as $tag)
+                                        <option {{is_array(old('tag_ids')) && in_array($tag->id, old('tag_ids')) ? 'selected': ''}} value="{{$tag->id}}">{{$tag->title}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-6">
+                            <label for="exampleInputFile">Добавить превью изображение</label>
                             <div class="input-group">
                                 <div class="custom-file">
                                     <input value="{{old('preview_image')}}" name="preview_image" type="file" class="custom-file-input @error('preview_image')is-invalid @enderror" id="exampleInputFile">
