@@ -65,7 +65,7 @@
                         </div>
 
                         <div class="col-6 mb-2">
-                            <img src="{{asset('storage/'. $post->preview_image)}}" alt="preview_image" class="w-50">
+                            <img src="{{/*asset('storage/'.*/ $post->preview_image /*)*/}}" alt="preview_image" class="w-50">
                         </div>
 
                         <div class="col-6">
@@ -84,7 +84,7 @@
                         </div>
 
                         <div class="col-6 mt-2">
-                            <img src="{{asset('storage/'. $post->main_image)}}" alt="main_image" class="w-50">
+                            <img src="{{/*asset('storage/'.*/ $post->main_image/*)*/}}" alt="main_image" class="w-50">
                         </div>
 
                         <div class="col-6 mt-3 mb-3">
