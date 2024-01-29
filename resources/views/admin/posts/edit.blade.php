@@ -104,7 +104,7 @@
 
 
                         <div class="col-4">
-                            <button class="btn btn-primary" type="submit">Добавить</button>
+                            <button class="btn btn-primary" type="submit">Сохранить</button>
                         </div>
                     </div>
                 </form>
