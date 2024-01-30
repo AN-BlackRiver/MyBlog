@@ -27,73 +27,82 @@
                                    value="{{old('title')}}"
                             >
                             @error('title')
-                            <div id="title" class="invalid-feedback">
-                                {{$message}}
-                            </div>
+                            <div class="text-danger">{{$message}}</div>
                             @enderror
                         </div>
                         <div class="col-12 mt-3">
-                            <textarea id="summernote" class="form-control @error('content')is-invalid @enderror" name="content">{{old('content')}}</textarea>
+                            <textarea id="summernote" class="form-control @error('content')is-invalid @enderror"
+                                      name="content">{{old('content')}}</textarea>
                             @error('content')
-                            <div id="content" class="invalid-feedback mb-3">
-                                {{$message}}
-                            </div>
+                            <div class="text-danger">{{$message}}</div>
                             @enderror
                         </div>
 
                         <div class="col-6">
                             <div class="form-group">
                                 <label>Категория</label>
-                                <select name="category_id" class="form-control">
-                                    <option selected>Выберите категорию</option>
+                                <select name="category_id"
+                                        class="form-control @error('category_id')is-invalid @enderror">
+                                    <option value="" disabled selected>Выберите категорию</option>
                                     @foreach($categories as $category)
-                                        <option value="{{$category->id}}" {{$category->id == old('category_id') ? 'selected': ''}}>
+                                        <option
+                                            value="{{$category->id}}" {{$category->id == old('category_id') ? 'selected': ''}}>
                                             {{$category->title}}
                                         </option>
                                     @endforeach
                                 </select>
                             </div>
+                            @error('category_id')
+                            <div class="text-danger">{{$message}}</div>
+                            @enderror
                         </div>
+
 
                         <div class="col-6">
                             <div class="form-group">
                                 <label>Выберите тэги</label>
-                                <select name="tag_ids[]" class="select2" multiple="multiple" data-placeholder="Выберите тэг" style="width: 100%;">
+                                <select name="tag_ids[]" class="select2 @error('tag_ids')is-invalid @enderror"
+                                        multiple="multiple" data-placeholder="Выберите тэг" style="width: 100%;">
                                     @foreach($tags as $tag)
-                                        <option {{is_array(old('tag_ids')) && in_array($tag->id, old('tag_ids')) ? 'selected': ''}} value="{{$tag->id}}">{{$tag->title}}</option>
+                                        <option
+                                            {{is_array(old('tag_ids')) && in_array($tag->id, old('tag_ids')) ? 'selected': ''}} value="{{$tag->id}}">{{$tag->title}}</option>
                                     @endforeach
                                 </select>
                             </div>
+
+                            @error('tag_ids')
+                            <div class="text-danger">{{$message}}</div>
+                            @enderror
                         </div>
 
                         <div class="col-6">
                             <label for="exampleInputFile">Добавить превью изображение</label>
                             <div class="input-group">
                                 <div class="custom-file">
-                                    <input value="{{old('preview_image')}}" name="preview_image" type="file" class="custom-file-input @error('preview_image')is-invalid @enderror" id="exampleInputFile">
+                                    <input value="{{old('preview_image')}}" name="preview_image" type="file"
+                                           class="custom-file-input @error('preview_image')is-invalid @enderror"
+                                           id="exampleInputFile">
                                     <label class="custom-file-label">Выбрать файл</label>
                                 </div>
-                                @error('preview_image')
-                                <div id="content" class="invalid-feedback mb-3">
-                                    {{$message}}
-                                </div>
-                                @enderror
                             </div>
+                            @error('preview_image')
+                            <div class="text-danger">{{$message}}</div>
+                            @enderror
                         </div>
 
                         <div class="col-6 mt-3 mb-3">
                             <label for="exampleInputFile">Добавить главное изображение</label>
                             <div class="input-group">
                                 <div class="custom-file">
-                                    <input value="{{old('main_image')}}" name="main_image" type="file" class="custom-file-input @error('main_image')is-invalid @enderror" id="exampleInputFile">
+                                    <input value="{{old('main_image')}}" name="main_image" type="file"
+                                           class="custom-file-input @error('main_image')is-invalid @enderror"
+                                           id="exampleInputFile">
                                     <label class="custom-file-label">Выбрать файл</label>
                                 </div>
-                                @error('main_image')
-                                <div id="content" class="invalid-feedback mb-3">
-                                    {{$message}}
-                                </div>
-                                @enderror
                             </div>
+                            @error('main_image')
+                            <div class="text-danger">{{$message}}</div>
+                            @enderror
                         </div>
 
 

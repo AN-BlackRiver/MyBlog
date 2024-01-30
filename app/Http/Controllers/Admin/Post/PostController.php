@@ -27,9 +27,8 @@ class PostController extends BaseController
 
     public function store(StoreRequest $request)
     {
-        $data = $request->validated();
 
-        $this->service->store($data);
+        $this->service->store($request->validated());
 
         return redirect()->route('posts.index');
     }
@@ -41,9 +40,8 @@ class PostController extends BaseController
 
     public function update(Post $post, UpdateRequest $request)
     {
-        $data = $request->validated();
 
-        $this->service->update($data, $post);
+        $this->service->update($request->validated(), $post);
 
         return redirect()->route('posts.index');
     }
