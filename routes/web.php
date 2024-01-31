@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\Category\CategoryController;
 use App\Http\Controllers\Admin\Post\PostController;
 use App\Http\Controllers\Admin\Tag\TagController;
+use App\Http\Controllers\Admin\User\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -31,6 +32,8 @@ Route::namespace('App\Http\Controllers\Admin')->prefix('admin')->group(function 
     Route::resource('tags', TagController::class);
 
     Route::resource('posts', PostController::class);
+
+    Route::resource('users', UserController::class);
 });
 
 
