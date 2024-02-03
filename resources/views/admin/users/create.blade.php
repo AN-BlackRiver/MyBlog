@@ -30,7 +30,7 @@
                             @enderror
                         </div>
 
-                        <div class="col-6 mt-3">
+                        <div class="col-6 mt-3 mb-3">
                             <input name="email" type="email"
                                    class="form-control @error('email')is-invalid @enderror"
                                    id="email" placeholder="Email"
@@ -40,15 +40,6 @@
                             @enderror
                         </div>
 
-                        <div class="col-6 mt-3 mb-3">
-                            <input name="password" type="text"
-                                   class="form-control @error('password')is-invalid @enderror"
-                                   id="password" placeholder="Пароль"
-                                   value="{{old('password')}}">
-                            @error('password')
-                                <div class="text-danger">{{$message}}</div>
-                            @enderror
-                        </div>
 
                         <div class="col-6">
                             <div class="form-group">

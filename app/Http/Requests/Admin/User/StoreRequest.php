@@ -12,7 +12,6 @@ class StoreRequest extends FormRequest
         return [
             'name' => ['required','string'],
             'email' => ['required','string','email','unique:users'],
-            'password' => ['required','string'],
             'role' => ['required','integer'],
         ];
     }
@@ -23,7 +22,6 @@ class StoreRequest extends FormRequest
             'name.required' => 'Необходимо заполнить имя пользователя',
             'email.required' => 'Необходимо заполнить Email',
             'email.unique' => 'Данный Email уже зарегистрирован',
-            'password.required' => 'Необходимо придумать пароль',
             'role.required' => 'Выберите роль пользователя',
         ];
     }
