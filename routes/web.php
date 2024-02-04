@@ -33,6 +33,10 @@ Route::namespace('App\Http\Controllers\Personal')->prefix('personal')->middlewar
             Route::get('/likes', 'LikeController')->name('personal.like');
         });
 
+        Route::namespace('Like')->group(function () {
+            Route::delete('/likes{post}', 'LikeDestroyController')->name('personal.like.destroy');
+        });
+
         Route::namespace('Comment')->group(function () {
             Route::get('/comments', 'CommentController')->name('personal.comments');
         });

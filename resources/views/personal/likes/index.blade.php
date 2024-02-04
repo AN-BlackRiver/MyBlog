@@ -34,7 +34,7 @@
                                 </a>
                                 <div>
                                     <form onSubmit="return confirm('Подтвердите удаление поста!')" method="post"
-                                          action="{{route('posts.destroy',$post->id)}}">
+                                          action="{{route('personal.like.destroy',$post->id)}}">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger btn-sm"><i
