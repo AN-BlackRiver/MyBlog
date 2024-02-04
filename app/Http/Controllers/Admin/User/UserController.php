@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Admin\User;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\User\StoreRequest;
 use App\Http\Requests\Admin\User\UpdateRequest;
+use App\Jobs\StoreUserJob;
 use App\Mail\User\PasswordMail;
 use App\Models\User;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
@@ -21,10 +23,9 @@ class UserController extends Controller
     public function store(StoreRequest $request)
     {
         $data = $request->validated();
-        $password = Str::random(10);
-        $data['password'] = Hash::make($password);
-        User::query()->firstOrCreate([$data['email']],$data);
-        Mail::to($data['email'])->send(new PasswordMail($password));
+
+        StoreUserJob::dispatch($data);
+
         return redirect()->route('users.index');
     }
 
@@ -48,6 +49,8 @@ class UserController extends Controller
         $data = $request->validated();
         $user->update($data);
         return redirect()->route('users.index');
+
+
     }
 
     public function destroy(User $user)
