@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Admin\Category\CommentController;
+use App\Http\Controllers\Admin\Category\CategoryController;
 use App\Http\Controllers\Admin\Post\PostController;
 use App\Http\Controllers\Admin\Tag\TagController;
 use App\Http\Controllers\Admin\User\UserController;
@@ -23,35 +23,38 @@ Route::namespace('App\Http\Controllers\Blog')->group(function () {
 });
 
 
-Route::namespace('App\Http\Controllers\Personal')->prefix('personal')->middleware(['auth','verified'])->group(function () {
-    Route::namespace('Main')->group(function () {
-        Route::get('/', 'IndexController')->name('personal.index');
-    });
+Route::namespace('App\Http\Controllers\Personal')->prefix('personal')->middleware(['auth', 'verified'])->group(
+    function () {
+        Route::namespace('Main')->group(function () {
+            Route::get('/', 'IndexController')->name('personal.index');
+        });
 
-    Route::namespace('Like')->group(function () {
-        Route::get('/likes', 'LikeController')->name('personal.like');
-    });
+        Route::namespace('Like')->group(function () {
+            Route::get('/likes', 'LikeController')->name('personal.like');
+        });
 
-    Route::namespace('Comment')->group(function () {
-        Route::get('/comments', 'CommentController')->name('personal.comments');
-    });
-});
+        Route::namespace('Comment')->group(function () {
+            Route::get('/comments', 'CommentController')->name('personal.comments');
+        });
+    }
+);
 
 
-Route::namespace('App\Http\Controllers\Admin')->prefix('admin')->middleware(['auth','admin','verified'])->group(function () {
-    Route::namespace('Main')->group(function () {
-        Route::get('/', 'IndexController')->name('admin.index');
-    });
+Route::namespace('App\Http\Controllers\Admin')->prefix('admin')->middleware(['auth', 'admin', 'verified'])->group(
+    function () {
+        Route::namespace('Main')->group(function () {
+            Route::get('/', 'IndexController')->name('admin.index');
+        });
 
-    Route::resource('categories', CommentController::class);
+        Route::resource('categories', CategoryController::class);
 
-    Route::resource('tags', TagController::class);
+        Route::resource('tags', TagController::class);
 
-    Route::resource('posts', PostController::class);
+        Route::resource('posts', PostController::class);
 
-    Route::resource('users', UserController::class);
-});
-
+        Route::resource('users', UserController::class);
+    }
+);
 
 
 Auth::routes(['verify' => true]);

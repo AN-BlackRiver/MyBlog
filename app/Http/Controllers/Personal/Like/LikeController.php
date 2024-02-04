@@ -11,6 +11,6 @@ class LikeController extends Controller
 {
    public function __invoke()
    {
-       return view('personal.likes.index');
+       return view('personal.likes.index', ['posts' => auth()->user()->likedPosts()->paginate(5)]);
    }
 }
