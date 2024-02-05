@@ -45,4 +45,9 @@ class Post extends Model
         $then = mb_substr($string, 1, null);
         return mb_strtoupper($firstChar) . $then;
     }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'category_id', 'id');
+    }
 }
