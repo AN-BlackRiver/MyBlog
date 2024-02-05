@@ -9,7 +9,7 @@ class LikeDestroyController extends Controller
 {
    public function __invoke(Post $post)
    {
-        auth()->user()->likedPosts()->detach($post);
+       auth()->user()->likedPosts()->detach($post);
        return redirect()->route('personal.like');
    }
 }

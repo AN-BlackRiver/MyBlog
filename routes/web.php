@@ -37,8 +37,11 @@ Route::namespace('App\Http\Controllers\Personal')->prefix('personal')->middlewar
             Route::delete('/likes{post}', 'LikeDestroyController')->name('personal.like.destroy');
         });
 
-        Route::namespace('Comment')->group(function () {
-            Route::get('/comments', 'CommentController')->name('personal.comments');
+        Route::namespace('Comment')->prefix('comments')->group(function () {
+            Route::get('/', 'CommentController')->name('personal.comments');
+            Route::get('/{comment}', 'CommentShowController')->name('personal.show.comments');
+            Route::patch('/{comment}', 'CommentUpdateController')->name('personal.update.comments');
+            Route::delete('/{comment}', 'CommentDestroyController')->name('personal.destroy.comments');
         });
     }
 );
