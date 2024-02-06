@@ -19,11 +19,34 @@
                 </ul>
                 <ul class="navbar-nav mt-2 mt-lg-0">
                     <li class="nav-item">
-                        <form method="post" action="{{route('logout')}}">
-                            @csrf
-                            <input type="submit" class="btn btn-outline-secondary" value="Выход">
-                        </form>
-                    </li>
+                    @guest
+                        @if (Route::has('login'))
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('login') }}">Вход</a>
+                            </li>
+                        @endif
+
+                        @if (Route::has('register'))
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('register') }}">Регистрация</a>
+                            </li>
+                        @endif
+                    @else
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="{{route('personal.index')}}" id="blogDropdown" data-toggle="dropdown"
+                               aria-haspopup="true" aria-expanded="false">{{auth()->user()->name}}</a>
+                            <div class="dropdown-menu" aria-labelledby="blogDropdown">
+                                <a class="dropdown-item" href="{{route('personal.like')}}">Понравившиеся посты</a>
+                                <a class="dropdown-item" href="{{route('personal.comments')}}">Комментарии</a>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <form method="post" action="{{route('logout')}}">
+                                @csrf
+                                <input type="submit" class="btn btn-success" value="Выход">
+                            </form>
+                        </li>
+                    @endguest
                 </ul>
             </div>
         </nav>
